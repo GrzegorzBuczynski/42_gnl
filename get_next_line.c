@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/02 15:00:55 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:17:39 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 char	*read_to_buffer(char *buffer, int fd)
 {
 	char	*temp;
-	char	*temp2;
-	size_t	bytes;
+	int		bytes;
 
 	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!temp)
