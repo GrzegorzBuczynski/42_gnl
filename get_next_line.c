@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/02 15:33:44 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:51:30 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ char	*load_to_line(char *buffer)
 	i = 0;
 	if (!buffer)
 		return (0);
-	while (buffer[i] != '\n')
+	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
-	i++;
+	if (buffer[i] == '\n')
+		i++;
 	str = malloc(sizeof(char) * i);
 	if (!str)
 		return (0);
