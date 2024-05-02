@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/02 15:17:39 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:33:44 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,50 +90,36 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	buffer = read_to_buffer(buffer, fd);
+
 	line = load_to_line(buffer);
+
 	buffer = update_buffer(buffer);
+
 	return (line);
 }
 
 // int	main(void)
 // {
-// 	// char *str = 0;
-// 	// char *str2 = 0;
-// 	// char *str = "123456";
-// 	// char *str2 = "qwert";
-// 	// char *str3;
-// 	// printf("lenght %d\n", ft_strlen(str));
-// 	// printf("pos3 = %p\n", ft_strchr(str, '3'));
-// 	// printf("pos4 = %p\n", ft_strchr(str, '4'));
-// 	// //	printf("getreturn (= %p\n", get_next_line(4));
-// 	// str3 = ft_strjoin(str, str2);
-// 	// if (str3 != NULL)
-// 	// {
-// 	// 	printf("strjoin %s", str3);
-// 	// }
-// 	// else
-// 	// {
-// 	// 	printf("strjoin failed\n");
-// 	// }
 // 	char *str4 = 0;
 // 	int fd = open("tekst.txt", O_RDONLY);
 // 	str4 = get_next_line(fd);
-// 	// if (str4)
-// 	// 	printf("%s", str4);
+// 	printf("%s", str4);
 // 	free(str4);
+// 	printf("\n");
+// 	printf("\n");
 // 	str4 = get_next_line(fd);
+// 	printf("%s", str4);
 // 	free(str4);
-// 		str4 = get_next_line(fd);
-// 	free(str4);
-// 		str4 = get_next_line(fd);
-// 	free(str4);
-// 		str4 = get_next_line(fd);
-// 	free(str4);
-// 		str4 = get_next_line(fd);
-// 	free(str4);
-// 			str4 = get_next_line(fd);
-// 	free(str4);
-// 	// if (str4)
-// 	// 	printf("%s", str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+
 // 	close(fd);
-// }
+// 	}
