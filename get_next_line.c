@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/02 16:05:12 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:42:40 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*read_to_buffer(char *buffer, int fd)
 		if (bytes == -1)
 		{
 			free(temp);
-			return (0);
+			return (NULL);
 		}
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
@@ -42,9 +42,9 @@ char	*load_to_line(char *buffer)
 	size_t	i;
 
 	i = 0;
-	if (!buffer)
+	if (!buffer[i])
 		return (0);
-	while (buffer[i] && buffer[i] != '\n' )
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == '\n')
 		i++;
@@ -52,7 +52,7 @@ char	*load_to_line(char *buffer)
 	if (!str)
 		return (0);
 	str[i] = '\0';
-	while (--i +1)
+	while (--i + 1)
 		str[i] = buffer[i];
 	return (str);
 }
@@ -90,12 +90,13 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (0);
 	buffer = read_to_buffer(buffer, fd);
-
+	if (!buffer)
+		return (0);
 	line = load_to_line(buffer);
-
 	buffer = update_buffer(buffer);
-
 	return (line);
 }
 
@@ -104,13 +105,14 @@ char	*get_next_line(int fd)
 // 	char *str4 = 0;
 // 	int fd = open("tekst.txt", O_RDONLY);
 // 	str4 = get_next_line(fd);
-// 	printf("%s", str4);
+// 	if (str4 == NULL)
+// 		printf("Test");
 // 	free(str4);
-// 	printf("\n");
-// 	printf("\n");
-// 	str4 = get_next_line(fd);
-// 	printf("%s", str4);
-// 	free(str4);
+// 	// printf("\n");
+// 	// printf("\n");
+// 	// str4 = get_next_line(fd);
+// 	// printf("%s", str4);
+// 	// free(str4);
 // 	// str4 = get_next_line(fd);
 // 	// free(str4);
 // 	// str4 = get_next_line(fd);
@@ -123,4 +125,4 @@ char	*get_next_line(int fd)
 // 	// free(str4);
 
 // 	close(fd);
-// 	}
+// }
