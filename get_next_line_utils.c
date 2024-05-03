@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:59:40 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 17:55:41 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:13:26 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		while (len--)
 			*--ptr_dst = *--ptr_src;
 	}
+	*ptr_dst = '\0';
+
 	return (dst);
 }
 
