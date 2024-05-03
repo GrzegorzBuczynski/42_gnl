@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 18:51:35 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:52:33 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,34 +72,34 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	char *str4 = 0;
-	int fd = open("41_no_nl", O_RDONLY);
-	for (int a = 0; a < 10; a++)
-	{
-		str4 = get_next_line(fd);
-		if (str4 == NULL)
-		{
-			printf("	NULL	\n");
-			break ;
-		}
-		printf("%s", str4);
-		free(str4);
-	}
-	// printf("\n");
-	// printf("\n");
-	// str4 = get_next_line(fd);
-	// str4 = get_next_line(fd);
-	// free(str4);
-	// str4 = get_next_line(fd);
-	// free(str4);
-	// str4 = get_next_line(fd);
-	// free(str4);
-	// str4 = get_next_line(fd);
-	// free(str4);
-	// str4 = get_next_line(fd);
-	// free(str4);
+// int	main(void)
+// {
+// 	char *str4 = 0;
+// 	int fd = open("41_no_nl", O_RDONLY);
+// 	for (int a = 0; a < 10; a++)
+// 	{
+// 		str4 = get_next_line(fd);
+// 		if (str4 == NULL)
+// 		{
+// 			printf("	NULL	\n");
+// 			break ;
+// 		}
+// 		printf("%s", str4);
+// 		free(str4);
+// 	}
+// 	// printf("\n");
+// 	// printf("\n");
+// 	// str4 = get_next_line(fd);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
+// 	// str4 = get_next_line(fd);
+// 	// free(str4);
 
-	close(fd);
-}
+// 	close(fd);
+// }
