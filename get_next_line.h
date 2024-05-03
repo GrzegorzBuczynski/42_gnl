@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:47 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 17:54:32 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:23:49 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);

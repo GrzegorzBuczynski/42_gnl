@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 17:54:51 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:51:35 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ char	*load_to_line(char *line, char *buffer)
 		return (0);
 	str[0] = '\0';
 	if (line)
-		ft_strlcat(str, line, ft_strlen(line));
+		ft_strlcat(str, line, (ft_strlen(line) + 1));
 	if (line)
 		free(line);
-	ft_strlcat(str, buffer, (j + 1));
+	ft_strlcat(str, buffer, (ft_strlen(str) + j + 1));
 	ft_memmove(buffer, (buffer + j), j);
 	return (str);
 }
@@ -72,34 +72,34 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	char *str4 = 0;
-// 	int fd = open("tekst.txt", O_RDONLY);
-// 	for (int a = 0; a < 10; a++)
-// 	{
-// 		str4 = get_next_line(fd);
-// 		if (str4 == NULL)
-// 		{
-// 			printf("Test");
-// 			break ;
-// 		}
-// 		printf("%s", str4);
-// 		free(str4);
-// 	}
-// 	// printf("\n");
-// 	// printf("\n");
-// 	// str4 = get_next_line(fd);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
+int	main(void)
+{
+	char *str4 = 0;
+	int fd = open("41_no_nl", O_RDONLY);
+	for (int a = 0; a < 10; a++)
+	{
+		str4 = get_next_line(fd);
+		if (str4 == NULL)
+		{
+			printf("	NULL	\n");
+			break ;
+		}
+		printf("%s", str4);
+		free(str4);
+	}
+	// printf("\n");
+	// printf("\n");
+	// str4 = get_next_line(fd);
+	// str4 = get_next_line(fd);
+	// free(str4);
+	// str4 = get_next_line(fd);
+	// free(str4);
+	// str4 = get_next_line(fd);
+	// free(str4);
+	// str4 = get_next_line(fd);
+	// free(str4);
+	// str4 = get_next_line(fd);
+	// free(str4);
 
-// 	close(fd);
-// }
+	close(fd);
+}
