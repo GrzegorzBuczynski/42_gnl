@@ -6,97 +6,69 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:09 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/02 17:44:39 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:54:51 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_to_buffer(char *buffer, int fd)
+int	read_to_buffer(char *buffer, int fd)
 {
-	char	*temp;
-	int		bytes;
+	int	bytes;
 
-	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!temp)
-		return (0);
-	bytes = 1;
-	while (bytes > 0 && !ft_strchr(buffer, '\n'))
-	{
-		bytes = read(fd, temp, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			free(temp);
-			return (NULL);
-		}
-		temp[bytes] = '\0';
-		buffer = ft_strjoin(buffer, temp);
-	}
-	free(temp);
-	return (buffer);
+	bytes = read(fd, buffer, BUFFER_SIZE);
+	buffer[bytes] = '\0';
+	return (bytes);
 }
 
-char	*load_to_line(char *buffer)
+char	*load_to_line(char *line, char *buffer)
 {
 	char	*str;
-	size_t	i;
+	int		j;
 
-	i = 0;
-	if (!buffer[i])
-		return (0);
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (buffer[i] == '\n')
-		i++;
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (0);
-	str[i] = '\0';
-	while (--i + 1)
-		str[i] = buffer[i];
-	return (str);
-}
-
-char	*update_buffer(char *buffer)
-{
-	char	*str;
-	size_t	i;
-	size_t	j;
-
-	if (!buffer)
-		return (0);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (!buffer[i])
-	{
-		free(buffer);
-		return (0);
-	}
-	str = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
-	if (!str)
-		return (0);
-	i++;
 	j = 0;
-	while (buffer[i])
-		str[j++] = buffer[i++];
-	str[j] = '\0';
-	free(buffer);
+	if (!buffer[0])
+		return (0);
+	while (buffer[j] && buffer[j] != '\n')
+		j++;
+	if (buffer[j] == '\n')
+		j++;
+	str = malloc(sizeof(char) * (ft_strlen(line) + j + 1));
+	if (!str)
+		return (0);
+	str[0] = '\0';
+	if (line)
+		ft_strlcat(str, line, ft_strlen(line));
+	if (line)
+		free(line);
+	ft_strlcat(str, buffer, (j + 1));
+	ft_memmove(buffer, (buffer + j), j);
 	return (str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
+	int			bytes;
 
+	line = 0;
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
-	buffer = read_to_buffer(buffer, fd);
-	if (!buffer)
-		return (0);
-	line = load_to_line(buffer);
-	buffer = update_buffer(buffer);
+	while (!ft_strchr(line, '\n'))
+	{
+		bytes = ft_strlen(buffer);
+		if (bytes == 0)
+			bytes = read_to_buffer(buffer, fd);
+		if (!bytes && line)
+			return (line);
+		if (!bytes)
+			return (0);
+		if (bytes > 0)
+			line = load_to_line(line, buffer);
+		if (bytes == -1)
+			return (0);
+	}
 	return (line);
 }
 
@@ -104,15 +76,20 @@ char	*get_next_line(int fd)
 // {
 // 	char *str4 = 0;
 // 	int fd = open("tekst.txt", O_RDONLY);
-// 	str4 = get_next_line(fd);
-// 	if (str4 == NULL)
-// 		printf("Test");
-// 	free(str4);
+// 	for (int a = 0; a < 10; a++)
+// 	{
+// 		str4 = get_next_line(fd);
+// 		if (str4 == NULL)
+// 		{
+// 			printf("Test");
+// 			break ;
+// 		}
+// 		printf("%s", str4);
+// 		free(str4);
+// 	}
 // 	// printf("\n");
 // 	// printf("\n");
 // 	// str4 = get_next_line(fd);
-// 	// printf("%s", str4);
-// 	// free(str4);
 // 	// str4 = get_next_line(fd);
 // 	// free(str4);
 // 	// str4 = get_next_line(fd);
