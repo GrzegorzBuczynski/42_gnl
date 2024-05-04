@@ -6,66 +6,65 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 22:09:08 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/04/21 14:53:06 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:51:39 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(char *buffer, int c)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
+	if (!buffer)
 		return (0);
 	if (c == '\0')
-		return (s + ft_strlen(s));
-	while (s[i] != '\0')
+		return (buffer + ft_strlen(buffer));
+	while (buffer[i])
 	{
-		if (s[i] == c)
-			return (s + i);
+		if (buffer[i] == c)
+			return (&buffer[i]);
 		i++;
 	}
 	return (0);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin(char *buff, char *temp)
 {
+	char	*str;
 	size_t	i;
 	size_t	j;
-	char	*str;
 
-	if (!buffer)
+	if (!temp)
 		return (0);
-	if (!line)
+	if (!buff)
 	{
-		line = (char *)malloc(1 * sizeof(char));
-		line[0] = '\0';
+		buff = malloc(sizeof(char));
+		buff[0] = '\0';
 	}
-	str = malloc(sizeof(char) * ((ft_strlen(line) + ft_strlen(buffer)) + 1));
-	if (str == 0)
+	str = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(temp) + 1));
+	if (!str)
 		return (0);
 	i = -1;
 	j = 0;
-	if (line)
-		while (line[++i] != '\0')
-			str[i] = line[i];
-	while (buffer[j] != '\0')
-		str[i++] = buffer[j++];
-	str[ft_strlen(line) + ft_strlen(buffer)] = '\0';
-	free(line);
+	while (buff && buff[++i] != '\0')
+		str[i] = buff[i];
+	while (temp && temp[j] != '\0')
+		str[i++] = temp[j++];
+	str[i] = '\0';
+	free(buff);
 	return (str);
 }
