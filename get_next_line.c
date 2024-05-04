@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:33:22 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/04 15:51:02 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:05:31 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*read_to_buffer(char *buffer, int fd)
 		bytes = read(fd, temp, BUFFER_SIZE);
 		if (bytes == -1)
 		{
+			if (buffer)
+				free(buffer);
 			free(temp);
 			return (NULL);
 		}
@@ -104,25 +106,16 @@ char	*get_next_line(int fd)
 // {
 // 	char *str4 = 0;
 // 	int fd = open("tekst.txt", O_RDONLY);
-// 	str4 = get_next_line(fd);
-// 	if (str4 == NULL)
-// 		printf("Test");
-// 	free(str4);
-// 	// printf("\n");
-// 	// printf("\n");
-// 	// str4 = get_next_line(fd);
-// 	// printf("%s", str4);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-// 	// str4 = get_next_line(fd);
-// 	// free(str4);
-
+// 	for (int a = 0; a < 40; a++)
+// 	{
+// 		str4 = get_next_line(fd);
+// 		if (str4 == NULL)
+// 		{
+// 			printf("	NULL	\n");
+// 			break ;
+// 		}
+// 		printf("%s", str4);
+// 		free(str4);
+// 	}
 // 	close(fd);
 // }
