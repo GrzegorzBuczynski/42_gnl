@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:50:47 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 18:55:47 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:50:07 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
 
 char	*ft_strchr(char *buffer, int c);
 int		ft_strlen(char *str);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	*ft_strjoin(char *buffer, char *temp_buffer);
 
 #endif

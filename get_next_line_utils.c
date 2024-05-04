@@ -6,7 +6,7 @@
 /*   By: gbuczyns <gbuczyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:59:40 by gbuczyns          #+#    #+#             */
-/*   Updated: 2024/05/03 20:13:26 by gbuczyns         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:20:18 by gbuczyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,47 +42,31 @@ char	*ft_strchr(char *buffer, int c)
 	return (0);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strjoin(char *buff, char *temp)
 {
-	unsigned char	*ptr_dst;
-	unsigned char	*ptr_src;
-
-	ptr_dst = (unsigned char *)dst;
-	ptr_src = (unsigned char *)src;
-	if (ptr_dst < ptr_src)
-	{
-		while (len--)
-			*ptr_dst++ = *ptr_src++;
-	}
-	else
-	{
-		ptr_dst += len;
-		ptr_src += len;
-		while (len--)
-			*--ptr_dst = *--ptr_src;
-	}
-	*ptr_dst = '\0';
-
-	return (dst);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
-{
+	char	*str;
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (dst[i] && i < size)
-		i++;
-	j = 0;
-	while (src[j] && i + j + 1 < size)
+	if (!temp)
+		return (0);
+	if (!buff)
 	{
-		dst[i + j] = src[j];
-		j++;
+		buff = malloc(sizeof(char));
+		if (!buff)
+			return (0);
+		buff[0] = '\0';
 	}
-	if (i < size)
-		dst[i + j] = '\0';
-	while (src[j])
-		j++;
-	return (i + j);
+	str = malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(temp) + 1));
+	if (!str)
+		return (0);
+	i = -1;
+	j = 0;
+	while (buff && buff[++i] != '\0')
+		str[i] = buff[i];
+	while (temp && temp[j] != '\0')
+		str[i++] = temp[j++];
+	str[i] = '\0';
+	free(buff);
+	return (str);
 }
